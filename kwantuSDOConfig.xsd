@@ -1,0 +1,2379 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bc="www.kwantu.net/basecomponents/simpletype" xmlns:calc="http://www.kwantu.net/calc" vc:minVersion="1.1" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
+	<xs:include schemaLocation="kwantu_base_types.xsd"/>
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="../shared/xml.xsd"/>
+	<xs:import namespace="http://www.kwantumedia.com/2012/AtomExtension" schemaLocation="kwantu.xsd"/>
+	<xs:import namespace="http://www.w3.org/2001/XMLSchema-instance" schemaLocation="xsi.xsd"/>
+	<xs:import namespace="http://www.w3.org/2005/Atom" schemaLocation="ns1.xsd"/>
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+	<xs:element name="component">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="identification"/>
+				<xs:element name="configuration">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="indicator">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="set" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="version">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element ref="versionInfo"/>
+																<xs:element name="settings">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element ref="heading"/>
+																			<xs:element name="languages"/>
+																			<xs:element name="searchable" type="xs:boolean"/>
+																			<xs:element name="includes" minOccurs="0">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="components"/>
+																						<xs:element name="taxonomies"/>
+																						<xs:element name="globalTemplates">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element maxOccurs="unbounded" name="globalTemplate">
+																										<xs:complexType>
+																											<xs:sequence/>
+																											<xs:attribute ref="id" use="required"/>
+																										</xs:complexType>
+																									</xs:element>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element minOccurs="0" ref="reportDefaults"/>
+																			<xs:element name="dataStore">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:enumeration value="profile"/>
+																						<xs:enumeration value="userProfile"/>
+																						<xs:enumeration value="communityProfile"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element ref="privacy"/>
+																			<xs:element ref="uiTemplates"/>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="uiLayouts" type="kw_uiLayouts_type"> </xs:element>
+																<xs:element name="rules">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="rule" maxOccurs="unbounded" minOccurs="0">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element maxOccurs="unbounded" name="action"/>
+																						<xs:element minOccurs="0" name="updates">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element maxOccurs="unbounded" name="update">
+																										<xs:complexType>
+																											<xs:attribute name="source"/>
+																											<xs:attribute name="target"/>
+																										</xs:complexType>
+																									</xs:element>
+																								</xs:sequence>
+																							</xs:complexType>
+																						</xs:element>
+																					</xs:sequence>
+																					<xs:attribute ref="id" use="required"/>
+																					<xs:attribute name="event" use="required">
+																						<xs:simpleType>
+																							<xs:restriction base="xs:NCName">
+																								<xs:enumeration value="onCreate"/>
+																								<xs:enumeration value="beforePersist"/>
+																								<xs:enumeration value="afterPersist"/>
+																								<xs:enumeration value="onClick"/>
+																							</xs:restriction>
+																						</xs:simpleType>
+																					</xs:attribute>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="elements">
+																	<xs:complexType>
+																		<xs:group ref="indicatorSetElements"/>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+															<xs:attribute name="version" form="unqualified" use="required" type="xs:string"> </xs:attribute>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute ref="id" use="required"/>
+												<xs:attribute ref="currentVersion" use="required"/>
+												<xs:attribute ref="devVersion" use="required"/>
+												<xs:attributeGroup ref="kw_inherited_element_source"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attributeGroup ref="kw_inherited_element_source"/>
+									<xs:attribute ref="id" use="required"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="performance">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="settings" type="kw_component_header_type"/>
+										<xs:element ref="uiTemplates"/>
+										<xs:element name="sets">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="set" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="version">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element ref="versionInfo"/>
+																			<xs:element ref="settings"/>
+																			<xs:element ref="uiTemplates" minOccurs="0"/>
+																			<xs:element name="rules">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="rule" maxOccurs="unbounded" minOccurs="0">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:element maxOccurs="unbounded" name="action"/>
+																								</xs:sequence>
+																								<xs:attribute ref="id" use="required"/>
+																								<xs:attribute name="event" use="required">
+																									<xs:simpleType>
+																										<xs:restriction base="xs:NCName">
+																											<xs:enumeration value="onCreate"/>
+																											<xs:enumeration value="beforePersist"/>
+																											<xs:enumeration value="afterPersist"/>
+																										</xs:restriction>
+																									</xs:simpleType>
+																								</xs:attribute>
+																							</xs:complexType>
+																						</xs:element>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="elements">
+																				<xs:complexType>
+																					<xs:group ref="performanceIndicatorSetElements" maxOccurs="unbounded" minOccurs="0"/>
+																					<xs:attribute ref="id"/>
+																					<xs:attributeGroup ref="kw_inherited_element_source"/>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																		<xs:attribute name="version" form="unqualified" use="required" type="xs:string"> </xs:attribute>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+															<xs:attribute ref="id" use="required"/>
+															<xs:attribute ref="currentVersion" use="required"/>
+															<xs:attribute ref="devVersion" use="required"/>
+															<xs:attribute name="setType" use="required">
+																<xs:annotation>
+																	<xs:documentation>Defines if this set shows as part of the global defaults, or only the node defaults</xs:documentation>
+																</xs:annotation>
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:enumeration value="global"/>
+																		<xs:enumeration value="node"/>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:attribute>
+															<xs:attributeGroup ref="kw_inherited_element_source"/>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attributeGroup ref="kw_inherited_element_source"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="identification">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="name"/>
+				<xs:element ref="documentation"/>
+			</xs:sequence>
+			<xs:attribute ref="applicationId" use="required"/>
+			<xs:attribute ref="baseComponentType" use="required"/>
+			<xs:attribute name="id" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="versionInfo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="publish">
+					<xs:complexType>
+						<xs:attribute name="date" type="xs:date"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="upgradeInformation"/>
+				<xs:element ref="documentation"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="upgradeInformation" type="xs:string"> </xs:element>
+	<xs:element name="settings" type="kw_performance_settings_type"> </xs:element>
+	<xs:element name="heading" type="kw_i18n_type"/>
+	<xs:element name="uiTemplates" type="kw_uiTemplates_type"> </xs:element>
+	<xs:element name="privacy">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="add">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="roles"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="create">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="roles"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="read">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="roles"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="update">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="roles"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="delete">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="roles"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="documentation" type="kw_i18n_type"/>
+	<xs:element name="namespace" type="xs:NCName"/>
+	<xs:element name="IndicatorSetConfigData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="settings"/>
+				<xs:element name="version">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="versionInfo"/>
+							<xs:element ref="settings"/>
+							<xs:element name="elements">
+								<xs:complexType>
+									<xs:group ref="indicatorSetElements"/>
+									<xs:attribute ref="id"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="version" form="unqualified" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string"/>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="profileConfigData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="settings"/>
+				<xs:element name="Elements">
+					<xs:complexType>
+						<xs:group ref="profileElements"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="Version" use="required" type="xs:decimal"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="pageConfigData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="settings"/>
+				<xs:element name="Elements">
+					<xs:complexType>
+						<xs:group ref="pageElements"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="Version" use="required" type="xs:decimal"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="objectViewConfigData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="settings"/>
+				<xs:element name="Elements">
+					<xs:complexType>
+						<xs:group ref="objectViewElements"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="Version" use="required" type="xs:decimal"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="rendererConfigData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="settings"/>
+				<xs:element name="Elements">
+					<xs:complexType>
+						<xs:group ref="rendererElements"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="Version" use="required" type="xs:decimal"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="communityProfileConfigData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="settings"/>
+				<xs:element name="Elements">
+					<xs:complexType>
+						<xs:group ref="communityProfileElements"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="Version" use="required" type="xs:decimal"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:group name="indicatorSetElements">
+		<xs:sequence>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="elField" maxOccurs="unbounded"/>
+				<xs:element maxOccurs="unbounded" name="elUpload" type="kw_elUpload_type"/>
+				<xs:element ref="elSelect" maxOccurs="unbounded"/>
+				<xs:element ref="elRepeat" maxOccurs="unbounded"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="performanceIndicatorSetElements">
+		<xs:choice>
+			<xs:element ref="elPerformance"/>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="profileElements">
+		<xs:choice>
+			<xs:element ref="label"/>
+			<xs:element ref="elField"/>
+			<xs:element ref="elSelect"/>
+			<xs:element ref="elRepeat"/>
+			<xs:element ref="elGroup"/>
+			<xs:element ref="hierarchy"/>
+			<xs:element ref="elSelectGroup"/>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="pageElements">
+		<xs:choice>
+			<xs:element ref="label"/>
+			<xs:element ref="elField"/>
+			<xs:element ref="elSelect"/>
+			<xs:element ref="elRepeat"/>
+			<xs:element ref="elGroup"/>
+			<xs:element ref="hierarchy"/>
+			<xs:element ref="elSelectGroup"/>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="objectViewElements">
+		<xs:choice>
+			<xs:element ref="label"/>
+			<xs:element ref="elField"/>
+			<xs:element ref="elSelect"/>
+			<xs:element ref="elRepeat"/>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="rendererElements">
+		<xs:choice>
+			<xs:element ref="label"/>
+			<xs:element ref="elField"/>
+			<xs:element ref="elSelect"/>
+			<xs:element ref="elRepeat"/>
+			<xs:element ref="elGroup"/>
+			<xs:element ref="hierarchy"/>
+			<xs:element ref="elSelectGroup"/>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="communityProfileElements">
+		<xs:choice>
+			<xs:element ref="label"/>
+			<xs:element ref="elField"/>
+			<xs:element ref="elSelect"/>
+			<xs:element ref="elRepeat"/>
+			<xs:element ref="elGroup"/>
+			<xs:element ref="hierarchy"/>
+			<xs:element ref="elSelectGroup"/>
+		</xs:choice>
+	</xs:group>
+	<xs:element name="reportDefaults" type="kw_ReportDefaults_type"> </xs:element>
+	<xs:element name="tableName" type="xs:NCName"/>
+	<xs:element name="elRepeat" type="kw_Repeat_type">
+		<xs:annotation id="Repeat">
+			<xs:documentation>Root element for the structure that defines the repeat or table structure</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="elField" type="kw_elField_type"> </xs:element>
+	<xs:element name="elSelect" type="kw_elSelect_type"> </xs:element>
+	<xs:element name="elPageHeader"/>
+	<xs:element name="elPageLayoutArea"/>
+	<xs:element name="elDisplayView"/>
+	<xs:element name="elActivityComment"/>
+	<xs:element name="elListview"/>
+	<xs:element name="elTagCloud"/>
+	<xs:element name="elTagItem"/>
+	<xs:element name="elHtmlEditor"/>
+	<xs:element name="label" type="kw_label_type"/>
+	<xs:element name="displays" type="kw_displays"/>
+	<xs:element name="signature">
+		<xs:simpleType>
+			<xs:restriction base="xs:NCName">
+				<xs:enumeration value="ColumnTotal"/>
+				<xs:enumeration value="DateDiff"/>
+				<xs:enumeration value="GetLocation"/>
+				<xs:enumeration value="GetLattitude"/>
+				<xs:enumeration value="GetLongitude"/>
+				<xs:enumeration value="RowTotal"/>
+				<xs:enumeration value="ElementValue"/>
+				<xs:enumeration value="Sum"/>
+				<xs:enumeration value="Product"/>
+				<xs:enumeration value="Max"/>
+				<xs:enumeration value="Average"/>
+				<xs:enumeration value="SelectGroupKey"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="nodeCount" type="xs:integer"/>
+	<xs:element name="nodes">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" ref="node"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="node">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:NCName">
+					<xs:attribute name="action" use="required" type="xs:NCName"/>
+					<xs:attribute name="seq" use="required" type="xs:integer"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="codelist">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Taxonomy">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:NCName">
+								<xs:attribute name="Type">
+									<xs:simpleType>
+										<xs:restriction base="xs:NCName">
+											<xs:enumeration value="XSL"/>
+											<xs:enumeration value="Rest"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="help" type="kw_Help_type"> </xs:element>
+	<xs:element name="reports" type="kw_Reports_type"> </xs:element>
+	<xs:element name="column" type="reportColumnType"> </xs:element>
+	<xs:element name="fieldName" type="xs:string"/>
+	<xs:element name="repeatDef">
+		<xs:annotation id="Repeat.RepeatDef">
+			<xs:documentation>The RepeatDef defines the overall aspects of the repeat table such as how rows are added and what are the key elements</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="addRows">
+					<xs:annotation id="AddRows">
+						<xs:documentation>AddRows defines how the Repeat determines how many and which rows are added to the repeat table.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="userAdd">
+								<xs:annotation id="AddRows.UserAdd">
+									<xs:documentation>If the UserAdd element is chosen, then the rows for the repeat table are added by the user selecting or adding them. The ways in which that can happen is defined in the child elements</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="add"/>
+										<xs:element name="delete" type="kw_repeat_add_delete_type"/>
+										<xs:element name="maxIterations" type="xs:short"/>
+										<xs:element name="minIterations" type="xs:short"/>
+										<xs:element name="addLinesMode" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>This might be deleted. Ignore for now</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:Name">
+													<xs:enumeration value="BlankLines"/>
+													<xs:enumeration value="UniqueLookup"/>
+													<xs:enumeration value="SingleLookup"/>
+													<xs:enumeration value="MultipleLookup"/>
+													<xs:enumeration value="MultipleUniqueLookup"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="autoLoad">
+								<xs:annotation id="AutoLoad">
+									<xs:documentation>If the Autoload element is chosen, then the rows for the repeat table are added programmatically, and not by user choice. The ways in which that can happen is defined</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:choice>
+										<xs:element name="blankLines" type="xs:short">
+											<xs:annotation id="Addrows.BlankLines">
+												<xs:documentation>Provide a number of blank rows as specified by the maxrows attribute</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="codelist">
+											<xs:annotation id="AddRows.Codelist">
+												<xs:documentation>Use the codelist specified by the KeyValue element to generate the rows.</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Taxonomy" type="xs:NCName"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="periods">
+											<xs:annotation id="AddRows.Periods">
+												<xs:documentation>Adds rows according the number of periods between the start and end date, one for each period (or part of period for the first and last ones)	</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="StartDate">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Element" type="kw_Element_type"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="EndDate">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Element" type="kw_Element_type"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="PeriodType" use="required">
+													<xs:simpleType>
+														<xs:restriction base="xs:Name">
+															<xs:enumeration value="Month"/>
+															<xs:enumeration value="Quarter"/>
+															<xs:enumeration value="YearCalendar"/>
+															<xs:enumeration value="YearAprilToMay"/>
+															<xs:enumeration value="YearJulyToJune"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="refComponent">
+											<xs:annotation id="AddRows.Component">
+												<xs:documentation>Adds blank rows depending on the values in a repeat structure in another component. The value of the component specifies the ID of the repeat structure</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence minOccurs="0">
+													<xs:element maxOccurs="unbounded" name="Filter">
+														<xs:annotation>
+															<xs:documentation>The filter value(s) will complare an element (and subelement if specified) from the repeatID in the source component and filter them to the value of the Value or the Source element specified
+</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:choice>
+																<xs:element name="Value"/>
+																<xs:element name="ElementID" type="kw_Element_type"/>
+																<xs:element name="ElementCalc" type="fnElementCalc"/>
+																<xs:element name="ElementsList" type="fnElementsList"/>
+															</xs:choice>
+															<xs:attribute name="ElementID"/>
+															<xs:attribute name="SubElement"/>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="ComponentName" type="xs:NCName" use="required">
+													<xs:annotation id="AddRows.Component.ComponentName">
+														<xs:documentation>Name of the component from which the rows will be retrieved.</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="RepeatID" type="xs:NCName" use="required">
+													<xs:annotation id="AddRows.Component.RepeatID">
+														<xs:documentation>Name of the RepeatID from which the rows will be retrieved.</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="linkedProfile">
+											<xs:annotation>
+												<xs:documentation>This indicates that you need to do a nework linked query. The profileId will be the link</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="profileType" use="required">
+													<xs:annotation>
+														<xs:documentation>Profile type on the network relationship to the current profile to filter on</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="linkType"/>
+												<xs:attribute name="orderByElement"/>
+												<xs:attribute name="orderByType">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="asc"/>
+															<xs:enumeration value="desc"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="search">
+											<xs:complexType>
+												<xs:attribute name="searchId" use="required">
+													<xs:annotation>
+														<xs:documentation>Profile type on the network relationship to the current profile to filter on</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="linkType"/>
+												<xs:attribute name="orderByElement"/>
+												<xs:attribute name="orderByType">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="asc"/>
+															<xs:enumeration value="desc"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="linkedAtomEntry"/>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="headerRow">
+					<xs:annotation id="RepeatDef.HeaderRow">
+						<xs:documentation>This element specifies how to generate the labels, and whether to show the header row or not.</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="id" type="xs:NCName"/>
+						<xs:attribute ref="show" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="dataRow">
+					<xs:complexType>
+						<xs:attribute name="id" type="xs:NCName" use="required"/>
+						<xs:attribute ref="show" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="summaryRow"/>
+				<xs:element name="columns">
+					<xs:complexType>
+						<xs:attribute name="numberColumns">
+							<xs:annotation id="Repeat.RepeatDef.Columns.NumberColumns">
+								<xs:documentation>Defines the number of columns that should be generated for the repeat structure. These are Visible columns. Each column has a header row, a data area and a summary area. In each of these areas there may be one or more elements.
+The Number of columns in the header, data and summary bands need not be equal, but a means must be devised to specify the span.
+</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:integer">
+									<xs:minInclusive value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="heading"/>
+				<xs:element ref="keyValue" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:NCName" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="numberColumns" type="xs:integer"/>
+	<xs:element name="add" type="kw_repeat_add_delete_type"/>
+	<xs:element name="create">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="roles"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="update">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="roles"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="read">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="roles"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="delete">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="roles"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="roles" type="kw_roles_type"/>
+	<xs:element name="summaryRow">
+		<xs:annotation id="Repeat.RepeatDef.SummaryRow">
+			<xs:documentation>Element determines if there is a summary row or not. </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="id" type="xs:NCName"/>
+			<xs:attribute ref="show" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="keyValue">
+		<xs:annotation id="KeyValue">
+			<xs:documentation>The KeyValue determines what creates the unique key for the list of rows. There might still be a sequence number, but if the user chooses a codelist, then there is a unique code and value associated with the code list that will populate the data for each row
+</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:NCName"> </xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="repeatColumn">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="repeatHeader" minOccurs="0"/>
+				<xs:element ref="repeatData"/>
+				<xs:element ref="repeatSummary" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="columnOrder" use="required"/>
+			<xs:attribute ref="seq" use="required">
+				<xs:annotation id="Repeat.RepeatDef.Columns.Column.Seq">
+					<xs:documentation>The number of the column</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="width" type="xs:string">
+				<xs:annotation id="Repeat.RepeatDef.Columns.Column.Width">
+					<xs:documentation>Defines the width of the column</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="repeatData">
+		<xs:annotation id="Repeat.RepeatData">
+			<xs:documentation>This is the root element that defines the data block for the repeat table. 
+Everything under this element is repeated for each row in the table.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:group ref="indicatorSetElements"/>
+			</xs:choice>
+			<xs:attribute name="span" default="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="repeatHeader">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="label"/>
+				<xs:element name="elAttribute" type="kw_elAttribute_type"/>
+				<xs:element ref="elField" maxOccurs="unbounded"/>
+			</xs:choice>
+			<xs:attribute name="labelsFromData" use="required">
+				<xs:annotation id="HeaderRow.LabelsFromData">
+					<xs:documentation>If Yes, then use the Label components from the first elements in the columns for the data section to determine the labels</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:NCName">
+						<xs:enumeration value="Yes"/>
+						<xs:enumeration value="No"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="span" default="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="repeatSummary">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded" minOccurs="0">
+				<xs:element name="elAttribute" type="kw_elAttribute_type"/>
+				<xs:element ref="elField" maxOccurs="unbounded"/>
+			</xs:choice>
+			<xs:attribute name="span" default="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:attribute name="no" type="xs:integer"/>
+	<xs:attribute name="source" type="xs:NCName"/>
+	<xs:element name="hierarchy">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" ref="hierarchyNode"/>
+			</xs:sequence>
+			<xs:attribute name="Levels">
+				<xs:simpleType>
+					<xs:restriction base="xs:short">
+						<xs:minInclusive value="-32768"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Taxonomy" type="xs:string"/>
+			<xs:attribute name="TopLevel" type="xs:token"/>
+			<xs:attribute name="Type">
+				<xs:simpleType>
+					<xs:restriction base="xs:NCName">
+						<xs:enumeration value="Hierarchy"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="hierarchyNode">
+		<xs:complexType> </xs:complexType>
+	</xs:element>
+	<xs:element name="elSelectGroup">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SelectGroupKey">
+					<xs:complexType>
+						<xs:all>
+							<xs:element ref="elSelect"/>
+						</xs:all>
+						<xs:attribute name="KeyID" type="xs:token" use="required">
+							<xs:annotation>
+								<xs:documentation>This KeyID references the ID of the field on the group that forms the key to link to this section</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="SelectGroup">
+					<xs:complexType>
+						<xs:choice maxOccurs="unbounded">
+							<xs:group ref="indicatorSetElements"/>
+							<xs:element name="elAttribute" type="kw_elAttribute_type"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="id"/>
+			<xs:attribute name="Type">
+				<xs:simpleType>
+					<xs:restriction base="xs:Name">
+						<xs:enumeration value="PersonsList"/>
+						<xs:enumeration value="OrganisationsList"/>
+						<xs:enumeration value="Rest"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attributeGroup ref="kw_inherited_element_source"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="kwElementMap">
+		<xs:annotation>
+			<xs:documentation>The purpose of this generic type is to map a source element in the value of the element to the element name in the current application component.
+Element value - provides the source component
+Attribute ElementName - provides the name of the lement in the local application component that the source element value is mapped to</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:NCName">
+				<xs:attribute name="LocalacElementName" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType mixed="true" name="reportColumnType">
+		<xs:all>
+			<xs:element ref="fieldName"/>
+			<xs:element name="fieldType" type="ColumnFieldtype"> </xs:element>
+			<xs:element default="0" name="fieldLength" type="xs:string"/>
+			<xs:element minOccurs="0" name="nullable">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Not Null"/>
+						<xs:enumeration value="Nullable"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:all>
+		<xs:attribute name="tableName" type="xs:NCName" use="required"/>
+		<xs:attribute name="source" use="required" type="kw_Source_type"> </xs:attribute>
+	</xs:complexType>
+	<xs:simpleType name="ColumnFieldtype">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Varchar "/>
+			<xs:enumeration value="Char "/>
+			<xs:enumeration value="Date"/>
+			<xs:enumeration value="Time"/>
+			<xs:enumeration value="DateTime"/>
+			<xs:enumeration value="Numeric "/>
+			<xs:enumeration value="Boolean"/>
+			<xs:enumeration value="Int "/>
+			<xs:enumeration value="Decimal "/>
+			<xs:enumeration value="Mediumblob"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="kw_GeoPoint_type">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="LongSeconds" use="required"/>
+				<xs:attribute name="LongMinutes" use="required"/>
+				<xs:attribute name="LongDegrees" use="required"/>
+				<xs:attribute name="Longitude"/>
+				<xs:attribute name="LattSeconds" use="required"/>
+				<xs:attribute name="LattMinutes" use="required"/>
+				<xs:attribute name="LattDegrees" use="required"/>
+				<xs:attribute name="Lattitude"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="kw_DisplayFormat_type">
+		<xs:restriction base="xs:NCName">
+			<xs:enumeration value="Float"/>
+			<xs:enumeration value="Numeric"/>
+			<xs:enumeration value="Date"/>
+			<xs:enumeration value="String"/>
+			<xs:enumeration value="Memo"/>
+			<xs:enumeration value="Boolean"/>
+			<xs:enumeration value="Integer"/>
+			<xs:enumeration value="Currency"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="kw_AssignSubElement_type">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" ref="assignAttribute"/>
+			<xs:choice minOccurs="0">
+				<xs:element name="assignElement">
+					<xs:annotation>
+						<xs:documentation>Here you assign one or more values from the taxonomy to element IDs associated with the Select Element ID</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="default" minOccurs="0" type="kw_Default_type"> </xs:element>
+							<xs:element ref="validations" minOccurs="0"/>
+						</xs:sequence>
+						<xs:attribute name="dataType" type="kw_data_formats_type" use="required"/>
+						<xs:attribute ref="sourcePath" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="assignSubElement" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Here you assign one or more values from the taxonomy to element IDs associated with the Select Element ID</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Default" minOccurs="0" type="kw_Default_type"> </xs:element>
+							<xs:element ref="validations" minOccurs="0"/>
+						</xs:sequence>
+						<xs:attribute use="required" ref="id"/>
+						<xs:attribute name="dataType" type="kw_data_formats_type" use="required"/>
+						<xs:attribute ref="sourcePath" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="kw_Assigns_type">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" name="assign" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Here you assign one or more values from the taxonomy to element IDs associated with the Select Element ID</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:normalizedString">
+							<xs:attribute name="Action">
+								<xs:annotation>
+									<xs:documentation>Action="Default" means that the assignment only takes place if the element is currently null.</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:NCName">
+										<xs:enumeration value="Default"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="Scope" use="required">
+								<xs:simpleType>
+									<xs:restriction base="xs:NCName">
+										<xs:enumeration value="SubElement"/>
+										<xs:enumeration value="Element"/>
+										<xs:enumeration value="Repeat"/>
+										<xs:enumeration value="Variable"/>
+										<xs:enumeration value="Registry"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="ElementID" type="xs:NCName" use="required"/>
+							<xs:attribute name="SubElementID" type="xs:NCName"/>
+							<xs:attribute name="RepeatKeyValue"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="kw_NodeType">
+		<xs:simpleContent>
+			<xs:extension base="xs:NCName">
+				<xs:attribute name="seq" type="xs:integer" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="kw_Source_type">
+		<xs:restriction base="xs:NCName">
+			<xs:enumeration value="Code"/>
+			<xs:enumeration value="Name"/>
+			<xs:enumeration value="KwantuObjectID"/>
+			<xs:enumeration value="Element"/>
+			<xs:enumeration value="SequenceNo"/>
+			<xs:enumeration value="ValidDate"/>
+			<xs:enumeration value="RepeatSequenceNo"/>
+			<xs:enumeration value="ProfileID"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType mixed="true" name="kw_ReportDefaultColumnType">
+		<xs:all>
+			<xs:element ref="fieldName"/>
+			<xs:element name="fieldType" type="kw_ColumnDefReportFieldtype"> </xs:element>
+			<xs:element default="1" name="fieldLength" type="xs:decimal"/>
+			<xs:element minOccurs="0" name="nullable">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Not Null"/>
+						<xs:enumeration value="Nullable"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:all>
+		<xs:attribute name="source" use="required" type="kw_Source_type"> </xs:attribute>
+	</xs:complexType>
+	<xs:element name="readOnlyIf" type="kw_Condition_type"> </xs:element>
+	<xs:simpleType name="kw_ColumnDefReportFieldtype">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Varchar"/>
+			<xs:enumeration value="Char"/>
+			<xs:enumeration value="Date"/>
+			<xs:enumeration value="Time"/>
+			<xs:enumeration value="DateTime"/>
+			<xs:enumeration value="Numeric"/>
+			<xs:enumeration value="Integer"/>
+			<xs:enumeration value="Memo"/>
+			<xs:enumeration value="Boolean"/>
+			<xs:enumeration value="Int"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="fnHistoryTotal">
+		<xs:sequence>
+			<xs:element name="Calculation">
+				<xs:annotation>
+					<xs:documentation>This element specifies which calculation should be performed
+- Sum: Sum all numeric values
+- Max: Return the maximum numeric value
+- Min: Return the minimum numeric value
+- Count: Return the number of rows in the column
+- CountUnique: Return the number of Unique values in the column</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:NCName">
+						<xs:enumeration value="Sum"/>
+						<xs:enumeration value="Max"/>
+						<xs:enumeration value="Min"/>
+						<xs:enumeration value="Count"/>
+						<xs:enumeration value="CountUnique"/>
+						<xs:enumeration value="AccumalativeSum"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element maxOccurs="1" name="Element">
+				<xs:annotation>
+					<xs:documentation>This is the element in the repeat table that is the basis for the calculation.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="kw_Element_type">
+							<xs:sequence>
+								<xs:choice>
+									<xs:element name="value" type="xs:string"/>
+									<xs:element name="xpath" type="kw_typed_xpath_type"/>
+								</xs:choice>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="Filters">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" name="Filter">
+							<xs:complexType>
+								<xs:sequence minOccurs="0">
+									<xs:element minOccurs="0" name="Parameters">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="Element" type="kw_Element_type" minOccurs="0"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element minOccurs="0" name="condition" type="kw_Condition_type">
+										<xs:annotation>
+											<xs:documentation>If the conditional element is present, it evaluates to a boolean. If the f(Conditional)=true then the validation rule applies, otherwise it does not apply.
+
+Ie. to specify that the field is required if the value of another field is "Other" then the following configuration would be applied:
+Validation: @Seq=1; @Type=NotNull ---&gt; this specifies that the current element value should not be null
+Condition[@Operator="Equal"]
+Condition/Element: {here the reference to the field that could have the value of other}
+Condition/Value:"Other"</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+								<xs:attribute name="seq" type="xs:integer" use="required"/>
+								<xs:attribute name="Type" use="required" type="kwantu_comparison_types"/>
+								<xs:attribute name="Parameters"/>
+								<xs:attribute name="Reference"/>
+								<xs:attribute name="FilterElement" type="kw_FilterElement_type"> </xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="kw_FilterElement_type">
+		<xs:restriction base="xs:NCName">
+			<xs:enumeration value="ValidDate"/>
+			<xs:enumeration value="SequenceNumber"/>
+			<xs:enumeration value="ElementInReference"/>
+			<xs:enumeration value="CurrentElement"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType mixed="true" name="kw_Help_type">
+		<xs:sequence>
+			<xs:element ref="i18n" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="show" use="required" type="xs:boolean"> </xs:attribute>
+		<xs:attributeGroup ref="kw_inherited_element_child"/>
+	</xs:complexType>
+	<xs:complexType name="kw_UIVersionElements_type">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" name="UIElement" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This element is only required if the UIVersion is Custom. Otherwise all the elements are included in the view</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="name" use="required"/>
+					<xs:attribute name="Type" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:NCName">
+								<xs:enumeration value="Default"/>
+								<xs:enumeration value="ReadOnly"/>
+								<xs:enumeration value="Hidden"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="kw_uiTemplates_type">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" name="uiTemplate">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" name="uiDevice">
+							<xs:complexType>
+								<xs:attribute name="name"/>
+								<xs:attribute name="deviceType" use="required">
+									<xs:annotation>
+										<xs:documentation>This points to a list of devices supported on the platform with the tranform. The parameters such as screen size parameters etc. are included with these devices, and can be seen as "transformer directives" that will be used when transforming</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:NCName">
+											<xs:enumeration value="Web"/>
+											<xs:enumeration value="Mobile"/>
+											<xs:enumeration value="Tablet"/>
+											<xs:enumeration value="Android"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attributeGroup ref="kw_inherited_element_source"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute ref="id" use="required"/>
+					<xs:attribute name="name" use="required"/>
+					<xs:attribute name="mode" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:NCName">
+								<xs:enumeration value="edit"/>
+								<xs:enumeration value="readonly"/>
+								<xs:enumeration value="dashboard"/>
+								<xs:enumeration value="list"/>
+								<xs:enumeration value="adhoc"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="uiLayoutId" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:NCName">
+								<xs:enumeration value="edit"/>
+								<xs:enumeration value="read"/>
+								<xs:enumeration value="dashboard"/>
+								<xs:enumeration value="list"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attributeGroup ref="kw_inherited_element_source"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attributeGroup ref="kw_inherited_element_source"/>
+	</xs:complexType>
+	<xs:complexType name="kw_elPerformance_type">
+		<xs:sequence>
+			<xs:element ref="displays"/>
+			<xs:element name="dimension">
+				<xs:complexType>
+					<xs:attribute name="isDimensioned" type="xs:boolean" use="required"/>
+					<xs:attribute name="dimType" use="required">
+						<xs:annotation>
+							<xs:documentation>Reference to the DimensionsTaxonomyId in the set</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="dimAggregationRule" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="Sum"/>
+								<xs:enumeration value="Average"/>
+								<xs:enumeration value="Maximum"/>
+								<xs:enumeration value="Minimum"/>
+								<xs:enumeration value="None"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="data">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="default" type="kw_Default_type" minOccurs="0"> </xs:element>
+						<xs:element name="field" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence minOccurs="0">
+									<xs:group ref="kw_Select_taxonomy_group"/>
+									<xs:element name="Assigns" type="kw_Assigns_type">
+										<xs:annotation>
+											<xs:documentation>This assigns value to elements that are not the current element</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="SubElements" type="kw_AssignSubElement_type">
+										<xs:annotation>
+											<xs:documentation>This Assign only assigns to this element node</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element minOccurs="0" name="Refresh">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element maxOccurs="unbounded" name="ElementID" type="xs:NCName"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+								<xs:attribute name="mode" use="required">
+									<xs:annotation>
+										<xs:documentation>The mode defines how the data elements are entered into the field.  Capture - User takes an action ReadOnly - User does not take action but the field can only be viewed Hidden - User cannot see the values Calculated - Value is calculated RepeatKey - The value is picked up from the way that the repeat key is specified.
+</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:NCName">
+											<xs:enumeration value="field"/>
+											<xs:enumeration value="select"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="dataType" type="kw_DataTypes" use="required"/>
+					<xs:attribute name="dataFormat" type="kw_data_formats_type" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="benchmark" type="kw_performance_field_type" minOccurs="0"> </xs:element>
+			<xs:element name="baseline" type="kw_performance_field_type" minOccurs="0"/>
+			<xs:element name="target" type="kw_performance_field_type" minOccurs="0"> </xs:element>
+			<xs:element name="achieved" type="kw_performance_field_type"> </xs:element>
+			<xs:element ref="reports"/>
+		</xs:sequence>
+		<xs:attribute ref="id" use="required"/>
+		<xs:attributeGroup ref="kw_inherited_element_source"/>
+	</xs:complexType>
+	<xs:complexType name="kw_Repeat_type">
+		<xs:sequence>
+			<xs:element ref="repeatDef"/>
+			<xs:element maxOccurs="unbounded" ref="repeatColumn"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:NCName" use="required"/>
+		<xs:attribute name="orientation">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="vertical"/>
+					<xs:enumeration value="horizontal"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="kw_elLabel_type">
+		<xs:sequence>
+			<xs:element ref="displays"/>
+			<xs:element ref="help"/>
+		</xs:sequence>
+		<xs:attribute name="id" use="required" type="xs:NCName"/>
+		<xs:attributeGroup ref="kw_inherited_element_source"/>
+	</xs:complexType>
+	<xs:complexType name="kw_elField_type">
+		<xs:sequence>
+			<xs:element ref="displays"/>
+			<xs:element name="fieldData">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="default" type="kw_Default_type" minOccurs="0"> </xs:element>
+						<xs:element ref="calculated" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attribute name="dataType" type="kw_DataTypes"/>
+					<xs:attribute name="dataFormat" type="kw_data_formats_type"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="data">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="options">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element maxOccurs="unbounded" name="option">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="label"/>
+												<xs:element name="value"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="validations" minOccurs="0"/>
+			<xs:element ref="help"/>
+		</xs:sequence>
+		<xs:attribute use="required" ref="id"/>
+	</xs:complexType>
+	<xs:complexType name="kw_elSelect_type">
+		<xs:sequence>
+			<xs:element ref="displays"/>
+			<xs:element name="data">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="select" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:group minOccurs="0" ref="kw_Select_taxonomy_group"/>
+									<xs:element minOccurs="0" name="refresh">
+										<xs:complexType>
+											<xs:sequence minOccurs="0">
+												<xs:element maxOccurs="unbounded" name="elementId" type="xs:NCName" minOccurs="0"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="taxonomy" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="codePath">
+										<xs:annotation>
+											<xs:documentation>Key Value is the Unique identifier for the block of data. This holds the path to the key value. If there are more than one then they are assigned multiple times</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:simpleContent>
+												<xs:extension base="xs:normalizedString">
+													<xs:attribute ref="name"/>
+												</xs:extension>
+											</xs:simpleContent>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="labelPath">
+										<xs:annotation>
+											<xs:documentation>Key Value is the Unique identifier for the block of data. This holds the path to the key value. If there are more than one then they are assigned multiple times</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:simpleContent>
+												<xs:extension base="xs:normalizedString">
+													<xs:attribute ref="name"/>
+													<xs:attribute name="isLangStructure"/>
+												</xs:extension>
+											</xs:simpleContent>
+										</xs:complexType>
+									</xs:element>
+									<xs:element maxOccurs="unbounded" name="additionalPaths" type="xs:normalizedString" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Key Value is the Unique identifier for the block of data. This holds the path to the key value. If there are more than one then they are assigned multiple times</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element minOccurs="0" ref="filter"> </xs:element>
+									<xs:element name="sort" minOccurs="0">
+										<xs:complexType>
+											<xs:attribute name="sortExpr"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+								<xs:attribute ref="ref" use="required"/>
+								<xs:attribute default="1" name="level" type="xs:int"/>
+								<xs:attribute ref="name"/>
+								<xs:attribute ref="id"/>
+								<xs:attribute name="baseExpr" type="xs:string"/>
+								<xs:attribute name="sortExpr" type="xs:string"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="subElements" type="kw_subElements_type">
+							<xs:annotation>
+								<xs:documentation>This Assign only assigns to this element node</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="assigns" type="kw_Assigns_type" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>This assigns value to elements that are not the current element. Note this might well be removed from the current specification. Do not implement!!!!</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="dataType" type="kw_data_formats_type"/>
+					<xs:attribute name="dataFormat" type="kw_data_formats_type"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="help"/>
+		</xs:sequence>
+		<xs:attribute name="id" use="required" type="xs:NCName"/>
+		<xs:attribute name="type" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Select"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="kw_elGroup_type">
+		<xs:group maxOccurs="unbounded" ref="indicatorSetElements"/>
+		<xs:attribute name="id" type="xs:short"/>
+		<xs:attributeGroup ref="kw_inherited_element_source"/>
+	</xs:complexType>
+	<xs:element name="elGroup">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="kw_elGroup_type">
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element name="elAttribute" type="kw_elAttribute_type"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="condition" type="kw_Condition_type">
+		<xs:annotation>
+			<xs:documentation>If the @Show="Conditional" it looks to the Condition nodeset that evaluates to a boolean. If the f(Condition)=true then field displays, otherwise not.
+
+Ie. to specify that the field must display only if the value of another field is "Other" then the following configuration would be applied:
+Condition[@Operator="Equal"]
+Condition/Element: {here the reference to the field that could have the value of other}
+Condition/Value:"Other"</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType mixed="true" name="kw_label_type">
+		<xs:choice>
+			<xs:element maxOccurs="unbounded" ref="i18n"/>
+			<xs:element name="Element" type="kw_Element_type"/>
+			<xs:element ref="calculated"/>
+		</xs:choice>
+		<xs:attribute ref="show"/>
+	</xs:complexType>
+	<xs:simpleType name="kw_Show_type">
+		<xs:restriction base="xs:NCName">
+			<xs:enumeration value="Yes"/>
+			<xs:enumeration value="No"/>
+			<xs:enumeration value="Conditional"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="kw_style_type">
+		<xs:attribute name="appearance" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:Name">
+					<xs:enumeration value="Output"/>
+					<xs:enumeration value="Heading"/>
+					<xs:enumeration value="Subheading"/>
+					<xs:enumeration value="SingleSelectCombo"/>
+					<xs:enumeration value="MultiSelectCombo"/>
+					<xs:enumeration value="Radio"/>
+					<xs:enumeration value="ButtonBar"/>
+					<xs:enumeration value="CheckBoxSingle"/>
+					<xs:enumeration value="CheckBoxMulti"/>
+					<xs:enumeration value="DragDropBoxes"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="span" type="xs:int"/>
+		<xs:attribute name="CSS" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:Name">
+					<xs:enumeration value="Subheading"/>
+					<xs:enumeration value="Kwantu-Standard-Label"/>
+					<xs:enumeration value="man-label"/>
+					<xs:enumeration value="Heading"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="variable">
+		<xs:complexType> </xs:complexType>
+	</xs:element>
+	<xs:complexType name="kw_ReportDefaults_type">
+		<xs:sequence minOccurs="0">
+			<xs:element name="tables">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="table" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="keys">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="key" type="kw_ReportDefaultColumnType" maxOccurs="unbounded"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="attributes">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="attribute" type="kw_ReportDefaultColumnType" maxOccurs="unbounded"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+								<xs:attribute name="name" type="xs:NCName"/>
+								<xs:attribute name="type">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="detail"/>
+											<xs:enumeration value="master"/>
+											<xs:enumeration value="summary"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="kw_component_header_type">
+		<xs:sequence>
+			<xs:element name="dimensions" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute ref="id" use="required"/>
+					<xs:attribute ref="name" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="languages">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="language">
+							<xs:complexType>
+								<xs:attribute ref="xml:lang" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute ref="xml:lang" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="dataSources">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" name="dataSource">
+							<xs:complexType>
+								<xs:sequence maxOccurs="unbounded">
+									<xs:element name="elementId">
+										<xs:complexType>
+											<xs:attribute name="id" use="required"/>
+											<xs:attribute name="elementId" use="required"/>
+											<xs:attribute name="dataType" type="kw_data_formats_type" use="required"/>
+											<xs:attribute name="parameter"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+								<xs:attribute name="id" use="required"/>
+								<xs:attribute name="indicatorId" use="required"/>
+								<xs:attribute name="setId" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="taxonomies">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" name="taxonomy">
+							<xs:complexType>
+								<xs:choice maxOccurs="unbounded">
+									<xs:element name="local">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="item">
+													<xs:complexType>
+														<xs:simpleContent>
+															<xs:extension base="xs:string">
+																<xs:attribute name="code"/>
+															</xs:extension>
+														</xs:simpleContent>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+											<xs:attribute name="dataType" type="kw_data_formats_type" use="required"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="application">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="filter"/>
+											</xs:sequence>
+											<xs:attribute name="id" use="required"/>
+											<xs:attribute name="taxonomyId" use="required"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:choice>
+								<xs:attribute name="id" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataStore">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="profile"/>
+						<xs:enumeration value="userProfile"/>
+						<xs:enumeration value="communityProfile"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="kw_Reports_type">
+		<xs:sequence minOccurs="0">
+			<xs:element maxOccurs="unbounded" ref="column"/>
+		</xs:sequence>
+		<xs:attribute name="Include" use="required" type="xs:boolean"> </xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="kw_Condition_type1">
+		<xs:annotation>
+			<xs:documentation>Check this ... some error might have occurred in the renaming of components</xs:documentation>
+		</xs:annotation>
+		<xs:choice maxOccurs="unbounded" minOccurs="0">
+			<xs:element name="CurrentToValue">
+				<xs:complexType>
+					<xs:attribute ref="seq" use="required"/>
+					<xs:attribute name="Operator" use="required" type="kwantu_comparison_types"/>
+					<xs:attribute name="Value"/>
+					<xs:attribute name="dataType" type="kw_data_formats_type"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CurrentToElement">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Element" type="kw_Element_type"/>
+					</xs:sequence>
+					<xs:attribute ref="seq" use="required"/>
+					<xs:attribute name="Operator" use="required" type="kwantu_comparison_types"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ElementToValue">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Element" type="kw_Element_type"/>
+					</xs:sequence>
+					<xs:attribute name="Operator" use="required" type="kwantu_comparison_types"/>
+					<xs:attribute name="Value"/>
+					<xs:attribute name="dataType" type="kw_data_formats_type"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ElementToElement">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Element" type="kw_Element_type"/>
+						<xs:element name="ReferenceElement" type="kw_Element_type">
+							<xs:annotation>
+								<xs:documentation>Not implemented yet</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="Operator" use="required" type="kwantu_comparison_types"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="showIf" type="kw_Condition_type">
+		<xs:annotation>
+			<xs:documentation>If the @Show="condition" it looks to the Condition nodeset that evaluates to a boolean. If the f(Condition)=true then field displays, otherwise not.
+
+Ie. to specify that the field must display only if the value of another field is "Other" then the following configuration would be applied:
+Condition[@Operator="Equal"]
+Condition/Element: {here the reference to the field that could have the value of other}
+Condition/Value:"Other"</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="kw_DispView_Like"/>
+	<xs:complexType name="kw_DispView_Comment"/>
+	<xs:complexType name="kw_DispView_Delete"/>
+	<xs:complexType name="kw_DispView_AddAttachment"/>
+	<xs:complexType name="kw_DispView_ShareWith"/>
+	<xs:complexType name="kw_CollectionFilter"/>
+	<xs:attribute name="name" type="xs:string"/>
+	<xs:complexType name="kw_displays">
+		<xs:sequence>
+			<xs:element name="display" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="label"/>
+						<xs:element minOccurs="0" ref="showIf"/>
+						<xs:element minOccurs="0" ref="readOnlyIf"/>
+						<xs:element name="format" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Select a display format. Should default to a particular format for a given data type. The element value will be used to specificy particular masks etc. that are relevant to the @DisplayFormat value selected</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="xs:string">
+										<xs:attribute name="displayFormat" type="kw_DisplayFormat_type"/>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="style" type="kw_style_type" minOccurs="0"> </xs:element>
+					</xs:sequence>
+					<xs:attribute ref="show" use="required"/>
+					<xs:attribute name="widget" use="required">
+						<xs:annotation id="Select.Entrymode.Mode">
+							<xs:documentation>The mode defines how the data elements are entered into the field. 
+Capture - User takes an action</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:NCName">
+								<xs:enumeration value="Autocomplete"/>
+								<xs:enumeration value="label"/>
+								<xs:enumeration value="textbox"/>
+								<xs:enumeration value="combobox"/>
+								<xs:enumeration value="datePicker"/>
+								<xs:enumeration value="textarea"/>
+								<xs:enumeration value="radio"/>
+								<xs:enumeration value="checkbox"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="mode" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="edit"/>
+								<xs:enumeration value="readonly"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:attribute name="currentVersion" type="xs:string"/>
+	<xs:attribute name="devVersion" type="xs:string"/>
+	<xs:attribute name="applicationId" type="xs:string"/>
+	<xs:attribute name="baseComponentType">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="indicator"/>
+				<xs:enumeration value="portlet"/>
+				<xs:enumeration value="page"/>
+				<xs:enumeration value="performance"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="setType">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="Audi"/>
+				<xs:enumeration value="Golf"/>
+				<xs:enumeration value="BMW"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:simpleType name="kw_indicatorSetType_type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="performance"/>
+			<xs:enumeration value="inoutPlanned"/>
+			<xs:enumeration value="inoutActual"/>
+			<xs:enumeration value="inoutBenchmark"/>
+			<xs:enumeration value="reference"/>
+			<xs:enumeration value="attribute"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:attribute name="type" type="kw_indicatorSetType_type"/>
+	<xs:group name="kw_Select_taxonomy_group">
+		<xs:choice>
+			<xs:element name="taxonomy">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="codePath">
+							<xs:annotation>
+								<xs:documentation>Key Value is the Unique identifier for the block of data. This holds the path to the key value. If there are more than one then they are assigned multiple times</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="xs:normalizedString">
+										<xs:attribute ref="name"/>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="labelPath">
+							<xs:annotation>
+								<xs:documentation>Key Value is the Unique identifier for the block of data. This holds the path to the key value. If there are more than one then they are assigned multiple times</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="xs:normalizedString">
+										<xs:attribute ref="name"/>
+										<xs:attribute name="isLangStructure"/>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element maxOccurs="unbounded" name="additionalPaths" type="xs:normalizedString" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Key Value is the Unique identifier for the block of data. This holds the path to the key value. If there are more than one then they are assigned multiple times</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" ref="filter"> </xs:element>
+						<xs:element name="sort" minOccurs="0">
+							<xs:complexType>
+								<xs:attribute name="sortExpr"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute use="required" name="ref"/>
+					<xs:attribute default="1" name="level" type="xs:int"/>
+					<xs:attribute ref="name"/>
+					<xs:attribute name="id"/>
+					<xs:attribute name="baseExpr" type="xs:string"/>
+					<xs:attribute name="sortExpr" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="atomSearch">
+				<xs:annotation>
+					<xs:documentation>Note here it always returns a atom UUID as the code, and a title as the label. But you can return other contents too.
+Note that if you select a ref attribute then it would point to a global resource, and the details will not be implemented. But the resource types</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="profileType" type="xs:normalizedString"/>
+						<xs:element maxOccurs="unbounded" name="additionalPaths" type="xs:normalizedString">
+							<xs:annotation>
+								<xs:documentation>Key Value is the Unique identifier for the block of data. This holds the path to the key value. If there are more than one then they are assigned multiple times</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="category"/>
+						<xs:element minOccurs="0" ref="filter"> </xs:element>
+						<xs:element name="codePath">
+							<xs:complexType>
+								<xs:attribute ref="name"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="labelPath">
+							<xs:complexType>
+								<xs:attribute ref="name"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute ref="ref" use="required"/>
+					<xs:attribute ref="id"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="atomContentSearch">
+				<xs:annotation>
+					<xs:documentation>Note that if you select a ref attribute then it would point to a global resource, and the details will not be implemented. But the resource types</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="indicatorSetId" type="xs:normalizedString"/>
+						<xs:element name="profileType" type="xs:normalizedString"/>
+						<xs:element name="codePath" type="xs:normalizedString">
+							<xs:annotation>
+								<xs:documentation>Key Value is the Unique identifier for the block of data. This holds the path to the key value. If there are more than one then they are assigned multiple times</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="labelPath" type="xs:normalizedString">
+							<xs:annotation>
+								<xs:documentation>Key Value is the Unique identifier for the block of data. This holds the path to the key value. If there are more than one then they are assigned multiple times</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element maxOccurs="unbounded" name="additionalPaths" type="xs:normalizedString">
+							<xs:annotation>
+								<xs:documentation>Key Value is the Unique identifier for the block of data. This holds the path to the key value. If there are more than one then they are assigned multiple times</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" ref="filter"> </xs:element>
+					</xs:sequence>
+					<xs:attribute ref="ref" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="rest" type="kw_RestType"/>
+			<xs:element name="autoLoad">
+				<xs:complexType>
+					<xs:attribute ref="id"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:group>
+	<xs:attributeGroup name="kw_inherited_element_source">
+		<xs:annotation>
+			<xs:documentation>These are the attributes to be added to a inheritable element to identify the source, and whether it is inherited or not. If this is set to false, then none of the child nodes of that element will be inherited. If that is set to true, then the child elements may still be set to false</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="inhSrc" type="xs:string"/>
+		<xs:attributeGroup ref="kw_inherited_element_child"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="kw_inherited_element_child">
+		<xs:annotation>
+			<xs:documentation>These are the attributes to be added to a inheritable element to identify the source, and whether it is inherited or not. If this is set to false, then none of the child nodes of that element will be inherited. If that is set to true, then the child elements may still be set to false</xs:documentation>
+		</xs:annotation>
+		<xs:attribute default="false" ref="inherited"/>
+		<xs:attribute ref="mayInherit"/>
+		<xs:attribute ref="allowInh2change"/>
+	</xs:attributeGroup>
+	<xs:attribute name="allowInh2change" type="xs:boolean"/>
+	<xs:attribute name="inherited" type="xs:boolean"/>
+	<xs:attribute name="mayInherit" type="xs:boolean"/>
+	<xs:complexType name="kw_dimensions_type"> </xs:complexType>
+	<xs:element name="elPerformance">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="kw_elPerformance_type">
+					<xs:sequence/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:attribute name="isCum" type="xs:boolean"/>
+	<xs:attribute name="isDefined" type="xs:boolean"/>
+	<xs:attribute name="periodType">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="month"/>
+				<xs:enumeration value="yearJan2Dec"/>
+				<xs:enumeration value="quarter"/>
+				<xs:enumeration value="yearApr2Mar"/>
+				<xs:enumeration value="year"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:complexType name="kw_performanceSet_settings_type">
+		<xs:sequence>
+			<xs:element ref="heading"/>
+			<xs:element name="dimensions" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" name="dimension">
+							<xs:complexType>
+								<xs:attribute ref="id" use="required"/>
+								<xs:attribute ref="name" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="setType">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="referenceSet">
+							<xs:complexType>
+								<xs:attribute ref="type"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute ref="type"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="reportDefaults" minOccurs="0"/>
+			<xs:element name="dataStore">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="profile"/>
+						<xs:enumeration value="userProfile"/>
+						<xs:enumeration value="communityProfile"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="kw_performance_settings_type">
+		<xs:sequence>
+			<xs:element name="dimensions" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute ref="id" use="required"/>
+					<xs:attribute ref="name" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="languages">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="language" type="kw_i18n_type"> </xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="dataSources">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" name="dataSource">
+							<xs:complexType>
+								<xs:sequence maxOccurs="unbounded">
+									<xs:element name="elementId">
+										<xs:complexType>
+											<xs:attribute name="id" use="required"/>
+											<xs:attribute name="elementId" use="required"/>
+											<xs:attribute name="dataType" type="kw_data_formats_type" use="required"/>
+											<xs:attribute name="parameter"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+								<xs:attribute name="id" use="required"/>
+								<xs:attribute name="indicatorId" use="required"/>
+								<xs:attribute name="setId" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="taxonomies">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" name="taxonomy">
+							<xs:complexType>
+								<xs:choice maxOccurs="unbounded">
+									<xs:element name="local">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="item">
+													<xs:complexType>
+														<xs:simpleContent>
+															<xs:extension base="xs:string">
+																<xs:attribute name="code"/>
+															</xs:extension>
+														</xs:simpleContent>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+											<xs:attribute name="dataType" type="kw_data_formats_type" use="required"/>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="application">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="filter"/>
+											</xs:sequence>
+											<xs:attribute name="id" use="required"/>
+											<xs:attribute name="taxonomyId" use="required"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:choice>
+								<xs:attribute name="id" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="dataStore">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="profile"/>
+						<xs:enumeration value="userProfile"/>
+						<xs:enumeration value="communityProfile"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="kw_performance_field_type">
+		<xs:sequence>
+			<xs:element ref="displays"/>
+			<xs:element ref="help" minOccurs="0"/>
+			<xs:element ref="validations" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute ref="periodType" use="required"/>
+		<xs:attribute ref="isCum" use="required"/>
+		<xs:attribute ref="isDefined" use="required"/>
+		<xs:attribute name="dimensionLevel" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>Level of the dimension applicable to the context. If this is not specified, default to the maximum number of levels defined in the dimensions taxonomy</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="kw_uiLayouts_type">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" name="uiLayout">
+				<xs:complexType>
+					<xs:group maxOccurs="unbounded" ref="uiElements"/>
+					<xs:attribute ref="id" use="required"/>
+					<xs:attribute name="name"/>
+					<xs:attributeGroup ref="kw_inherited_element_source"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="uiElements">
+		<xs:choice>
+			<xs:element ref="label"/>
+			<xs:element name="panelSet" type="kw_ui_panelSet_type"> </xs:element>
+			<xs:element name="layout" type="kw_ui_layout_type"/>
+			<xs:element name="element" type="kw_ui_element_type"/>
+			<xs:element name="button">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="kw_ui_button_type">
+							<xs:sequence>
+								<xs:element ref="label"/>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="include" type="kw_ui_include_type"/>
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="kw_ui_panelSet_type">
+		<xs:sequence>
+			<xs:element name="panelType">
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="tabs"/>
+						<xs:element name="accordion"/>
+						<xs:element name="wizard"/>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+			<xs:element maxOccurs="unbounded" name="panel" type="kw_ui_panel_type"> </xs:element>
+		</xs:sequence>
+		<xs:attribute ref="id" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="kw_ui_layout_type">
+		<xs:sequence>
+			<xs:group maxOccurs="unbounded" ref="uiElements"/>
+		</xs:sequence>
+		<xs:attribute use="required" name="id"/>
+		<xs:attribute name="orientation" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="horizontal"/>
+					<xs:enumeration value="vertical"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="align">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="left"/>
+					<xs:enumeration value="right"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="kw_ui_element_type">
+		<xs:attribute use="required" ref="ref"/>
+	</xs:complexType>
+	<xs:complexType name="kw_ui_button_type">
+		<xs:attribute name="ruleId" use="required"/>
+		<xs:attribute name="id" use="required"/>
+		<xs:attribute name="type" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="app.save"/>
+					<xs:enumeration value=""/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="assignName" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="$root"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="kw_ui_include_type">
+		<xs:attribute name="globalTemplateId" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="kw_ui_panel_type">
+		<xs:sequence>
+			<xs:element name="display" maxOccurs="unbounded" type="kw_ui_display_type"> </xs:element>
+			<xs:group maxOccurs="unbounded" ref="uiElements"/>
+		</xs:sequence>
+		<xs:attribute ref="id" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="kw_ui_display_type">
+		<xs:sequence>
+			<xs:element ref="label"/>
+			<xs:element minOccurs="0" ref="showIf"/>
+			<xs:element minOccurs="0" ref="readOnlyIf"/>
+			<xs:element name="format" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Select a display format. Should default to a particular format for a given data type. The element value will be used to specificy particular masks etc. that are relevant to the @DisplayFormat value selected</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="displayFormat" type="kw_DisplayFormat_type"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="style" type="kw_style_type" minOccurs="0"> </xs:element>
+		</xs:sequence>
+		<xs:attribute ref="show" use="required"/>
+		<xs:attributeGroup ref="kw_inherited_element_child"/>
+	</xs:complexType>
+	<xs:complexType name="kw_elUpload_type">
+		<xs:sequence>
+			<xs:element ref="displays"/>
+			<xs:element name="fieldData">
+				<xs:complexType>
+					<xs:sequence minOccurs="0">
+						<xs:element maxOccurs="unbounded" name="default" type="kw_Default_type"> </xs:element>
+					</xs:sequence>
+					<xs:attribute name="dataType" type="kw_data_formats_type"/>
+					<xs:attribute name="dataFormat" type="kw_data_formats_type"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="validations"/>
+			<xs:element ref="reports"/>
+			<xs:element ref="help"/>
+		</xs:sequence>
+		<xs:attribute use="required" ref="id"/>
+		<xs:attributeGroup ref="kw_inherited_element_source"/>
+	</xs:complexType>
+	<xs:attribute name="ref"/>
+	<xs:complexType name="kw_elAttribute_type">
+		<xs:sequence>
+			<xs:element ref="displays"/>
+			<xs:element name="attributeData">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="default" type="kw_Default_type"> </xs:element>
+						<xs:element minOccurs="0" ref="calculated"/>
+					</xs:sequence>
+					<xs:attribute name="dataType" type="kw_data_formats_type"/>
+					<xs:attribute name="dataFormat" type="kw_data_formats_type"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="validations"/>
+			<xs:element ref="reports"/>
+			<xs:element ref="help"/>
+		</xs:sequence>
+		<xs:attribute ref="id" use="required"/>
+		<xs:attributeGroup ref="kw_inherited_element_source"/>
+	</xs:complexType>
+	<xs:complexType name="kw_roles_type">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" name="role">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="id" type="xs:NCName" use="required"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="kw_repeat_add_delete_type">
+		<xs:sequence>
+			<xs:element ref="label"/>
+			<xs:element minOccurs="0" ref="roles"/>
+		</xs:sequence>
+		<xs:attribute name="type" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="button"/>
+					<xs:enumeration value="link"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="fieldData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" ref="default"/>
+			</xs:sequence>
+			<xs:attribute name="dataType" type="kw_DataTypes" use="required"/>
+			<xs:attribute name="dataFormat" type="kw_data_formats_type"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="default">
+		<xs:complexType/>
+	</xs:element>
+</xs:schema>
