@@ -1,0 +1,282 @@
+<entry xmlns="http://www.w3.org/2005/Atom" xmlns:kwantu="http://www.kwantumedia.com/2012/AtomExtension" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2005/Atom http://kwantu9data.kwantu.net:8080/exist/rest/db/kwantu-resource/schemas/indicatorConfigSchema/xml/kwantuSDOConfig.xsd">
+    <id>urn:uuid:config_1_LevelofInfluence</id>
+    <title type="text">LevelofInfluence details</title>
+    <summary type="text">LevelofInfluence details</summary>
+    <published>2014-07-04T15:39:08.315+05:30</published>
+    <updated>2014-07-04T15:39:08.315+05:30</updated>
+    <author type="user">
+        <kwantu:community>10004</kwantu:community>
+        <kwantu:profile>10007</kwantu:profile>
+        <name>Admin</name>
+    </author>
+    <contributor>
+        <kwantu:community>10004</kwantu:community>
+        <kwantu:profile>10007</kwantu:profile>
+        <name>Admin</name>
+    </contributor>
+    <icon src=""/>
+    <link href="/db/data/10004/workspace/10004-10002/editor/.feed.entry/config_1_LevelofInfluence.entry.atom" rel="edit" type="application/atom+xml"/>
+    <category term="config" label="Config" scheme="schemas/comment.xsd"/>
+    <kwantu:control>
+        <kwantu:global-meta-info>
+            <kwantu:info key="indicator" value="config"/>
+            <kwantu:info key="set" value="config"/>
+            <kwantu:info key="app_id" value="10004-10002"/>
+        </kwantu:global-meta-info>
+        <kwantu:draft>true</kwantu:draft>
+        <kwantu:moderation required="false" status=""/>
+        <kwantu:privacy>
+            <kwantu:add level="0">Everyone</kwantu:add>
+            <kwantu:create level="0">Everyone</kwantu:create>
+            <kwantu:read level="0">Everyone</kwantu:read>
+            <kwantu:update level="0">Everyone</kwantu:update>
+            <kwantu:delete level="0">Everyone</kwantu:delete>
+        </kwantu:privacy>
+        <kwantu:deleted profileId="" date="">false</kwantu:deleted>
+        <kwantu:expired date="">false</kwantu:expired>
+        <kwantu:status code="0">Active</kwantu:status>
+        <kwantu:featured startDateTime="" endDateTime="">false</kwantu:featured>
+        <kwantu:release date=""/>
+        <kwantu:locked>
+            <kwantu:reserved locked="false" date="" profileId="" expire="" requestRelease=""/>
+            <kwantu:session locked="false" date="" profileId="" token="" expire="" requestRelease=""/>
+            <kwantu:form locked="false" date="" profileId="" formId="" requestRelease=""/>
+            <kwantu:device locked="false" date="" profileId="" deviceId="" requestRelease=""/>
+        </kwantu:locked>
+        <kwantu:refresh period="0">N/A</kwantu:refresh>
+    </kwantu:control>
+    <content>
+        <kwantu:sequence num="1" current="true" locked="false">
+            <kwantu:trace>
+                <kwantu:timestamps>
+                    <kwantu:submission>2014-07-04T15:39:08.315+05:30</kwantu:submission>
+                </kwantu:timestamps>
+                <kwantu:contributor>
+                    <kwantu:community>10004</kwantu:community>
+                    <kwantu:profile>10007</kwantu:profile>
+                </kwantu:contributor>
+                <kwantu:moderation required="false" status=""/>
+            </kwantu:trace>
+            <kwantu:data>
+                <component xmlns="">
+                    <identification id="LevelofInfluence" applicationId="10002" baseComponentType="indicator">
+                        <name>
+                            <i18n xml:lang="">Kwantu Default Content</i18n>
+                        </name>
+                        <documentation>
+                            <i18n xml:lang="">Kwantu Default Content Indicator</i18n>
+                        </documentation>
+                    </identification>
+                    <configuration>
+                        <indicator id="LevelofInfluence">
+                            <set id="LevelofInfluence" currentVersion="1.5.0" devVersion="1.5.0">
+                                <version version="1.5.0">
+                                    <versionInfo>
+                                        <publish/>
+                                        <upgradeInformation/>
+                                        <documentation>
+                                            <i18n xml:lang="en"></i18n>
+                                        </documentation>
+                                    </versionInfo>
+                                    <settings>
+                                        <heading>
+                                            <i18n xml:lang="en"></i18n>
+                                        </heading>
+                                        <searchable>true</searchable>
+                                        <dataStore>profile</dataStore> 
+                                        <privacy>
+                                            <add>
+                                                <roles>
+                                                    <role id="member">Member</role>
+                                                </roles>
+                                            </add>
+                                            <create>
+                                                <roles>
+                                                    <role id="member">Member</role>
+                                                </roles>
+                                            </create>
+                                            <read>
+                                                <roles>
+                                                    <role id="sysAdmin">System Administrator</role>
+                                                    <role id="sysConfig">System Configurator</role>
+                                                    <role id="admin">Administrator</role>
+                                                    <role id="owner">Owner</role>
+                                                    <role id="member">Member</role>
+                                                </roles>
+                                            </read>
+                                            <update>
+                                                <roles>
+                                                    <role id="sysAdmin">System Administrator</role>
+                                                    <role id="sysConfig">System Configurator</role>
+                                                    <role id="admin">Administrator</role>
+                                                    <role id="owner">Owner</role>
+                                                </roles>
+                                            </update>
+                                            <delete>
+                                                <roles>
+                                                    <role id="sysAdmin">System Administrator</role>
+                                                    <role id="sysConfig">System Configurator</role>
+                                                    <role id="admin">Administrator</role>
+                                                    <role id="owner">Owner</role>
+                                                </roles>
+                                            </delete>
+                                        </privacy>
+                                        <uiTemplates>
+                                            <uiTemplate id="document_edit" name="Create/Edit View" mode="edit" uiLayoutId="edit">
+                                                <uiDevice deviceType="Web"/>
+                                                <uiDevice deviceType="Android"/>
+                                            </uiTemplate>
+                                            <uiTemplate id="document_read" name="View" mode="readonly" uiLayoutId="read">
+                                                <uiDevice deviceType="Web"/>
+                                                <uiDevice deviceType="Android"/>
+                                            </uiTemplate>
+                                        </uiTemplates>
+                                    </settings>
+                                    <uiLayouts>
+                                        <uiLayout id="edit">
+                                            <panelSet id="accCepFifteen">
+                                                <panelType>
+                                                    <accordion>
+                                                        <requireOpenedPane>false</requireOpenedPane>
+                                                        <selectedIndex>0</selectedIndex>
+                                                    </accordion>
+                                                </panelType>
+                                                <panel id="panel1">
+                                                    <display show="true">
+                                                        <label>
+                                                            <i18n xml:lang="en">Level of influence details</i18n>
+                                                        </label>
+                                                    </display>
+                                                    <layout id="vbPanel2" orientation="vertical">
+                                                        <element ref="hasInfluencedSolutions"/>
+                                                        <element ref="uploadDocs"/>
+                                                    </layout>
+                                                </panel>
+                                               
+                                            </panelSet>
+                                            <layout id="buttonBar" orientation="horizontal" align="left">
+                                                <button id="saveButton" type="app.save" assignName="$root" style="prominent">
+                                                    <label>
+                                                        <i18n xml:lang="en">Save and close</i18n>
+                                                    </label>
+                                                </button>
+                                                <button id="validateButton" type="app.validateForm" assignName="$root" style="normal">
+                                                    <label>
+                                                        <i18n xml:lang="en">✓ Check form validations</i18n>
+                                                    </label>
+                                                </button>
+                                                <button id="saveAsDraft" type="app.saveAsDraft" assignName="$root" style="normal">
+                                                    <label>
+                                                        <i18n xml:lang="en">Save as draft</i18n>
+                                                    </label>
+                                                </button>
+                                            </layout>
+                                        </uiLayout>
+                                        <uiLayout id="read">
+                                            <panelSet id="accCepFifteen">
+                                                <panelType>
+                                                    <accordion>
+                                                        <requireOpenedPane>false</requireOpenedPane>
+                                                        <selectedIndex>0</selectedIndex>
+                                                    </accordion>
+                                                </panelType>
+                                                <panel id="panel1">
+                                                    <display show="true">
+                                                        <label>
+                                                            <i18n xml:lang="en">Action details</i18n>
+                                                        </label>
+                                                    </display>
+                                                    <layout id="vbPanel2" orientation="vertical">
+                                                        <element ref="hasInfluencedSolutions"/>
+                                                        <element ref="uploadDocs"/>
+                                                        
+                                                    </layout>
+                                                </panel>
+                                               
+                                            </panelSet>
+                                        </uiLayout>
+                                    </uiLayouts>
+                                    <rules>
+                                        <rule id="saveModel" event="onClick">
+                                            <action>saveModel</action>
+                                        </rule>
+                                        <rule id="closeForm" event="onClick">
+                                            <action>closeForm</action>
+                                        </rule>
+                                        <rule id="updateTitle" event="onSave">
+                                            <action>updateTitle</action>
+                                            <updates>
+                                                <update source="/hasInfluencedSolutions" target="atom:title"/>
+                                            </updates>
+                                        </rule>
+                                    </rules>
+                                    <elements>
+                                         <elSelect id="'Level of influence details'">
+                                            <displays>
+                                                <display show="true" mode="edit" widget="combobox">
+                                                    <label show="true">
+                                                        <i18n xml:lang="en">To what extent do you feel you have  influence over solutions to issues identified in your community?</i18n>
+                                                    </label>
+                                                    <style width="60%"/>
+                                                </display>
+                                                <display show="true" mode="readonly" widget="label">
+                                                    <label show="true">
+                                                        <i18n xml:lang="en">To what extent do you feel you have  influence over solutions to issues identified in your community?</i18n>
+                                                    </label>
+                                                    <style width="60%"/>
+                                                </display>
+                                            </displays>
+                                            <data>
+                                                <taxonomy id="ExtentOfInfluence" ref="ExtentOfInfluence" name="ExtentOfInfluence" baseExpr="TaxonomyItems/Item" sortExpr="Name/Int[@xml:lang = 'en']">
+                                                    <codePath name="code">@Code</codePath>
+                                                    <labelPath name="label">Name/Int[@xml:lang = 'en']</labelPath>
+                                                </taxonomy>
+                                                <subElements>
+                                                    <assignSubElement id="code" dataType="string" sourcePath="code"/>
+                                                    <assignSubElement id="label" dataType="string" sourcePath="label"/>
+                                                </subElements>
+                                            </data>
+                                            <fieldData dataType="string"/>
+                                            <validations>
+                                                <validation seq="1">
+                                                    <simple type="required" dataType="boolean" value="true"/>
+                                                    <errorMessage>
+                                                        <i18n xml:lang="en">This field is required</i18n>
+                                                    </errorMessage>
+                                                </validation>
+                                            </validations>
+                                             <help show="true">
+                                                 <i18n xml:lang="en">Please select an option</i18n>
+                                             </help>
+                                        </elSelect> 
+                                       <elUpload id="uploadDocs">
+                                            <displays>
+                                                <display show="true" mode="edit" widget="camera">
+                                                    <label show="false">
+                                                        <i18n xml:lang="en">Capture photo</i18n>
+                                                    </label>
+                                                    <style width="90%"/>
+                                                </display>
+                                                <display show="true" mode="readonly" widget="preview">
+                                                    <label show="false">
+                                                        <i18n xml:lang="en">Preview photo</i18n>
+                                                    </label>
+                                                    <style width="90%"/>
+                                                </display>
+                                            </displays>
+                                            <fieldData/>
+                                        </elUpload>
+                                    </elements>
+                                </version>
+                            </set>
+                        </indicator>
+                    </configuration>
+                </component>
+            </kwantu:data>
+        </kwantu:sequence>
+    </content>
+    <kwantu:map/>
+    <kwantu:calendar/>
+    <kwantu:tags/>
+    <kwantu:likes/>
+</entry>
