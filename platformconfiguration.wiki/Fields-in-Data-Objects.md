@@ -1,0 +1,15 @@
+This page describes conceptually what a Data Object **Field** is, in the context of a Kwantu platform [**data object**](https://github.com/kwantu/platformconfiguration/wiki/Kwantu-Entity-list#data-objects).
+
+In the Kwantu platform, (the fields in **DOs** and the fields on **forms**) are all specified in the same place (ie. the data object configuration file). There's a very specific reason for this, which relates to an abstraction layer that separates business rules from technical constraints, such that a field only ever needs to be configured once, in order for it to manifest wherever it is implemented. There are of course more than one configuration file and it is possible for a constraint in one configuration file to override a constraint inherited from another configuration file.
+
+
+**The following lists the attributes of a field:**
+* Fields are components of the metadata of a DO, in the same way that columns are components of tables of a schema in a relational database. 
+* The fields of a DO are named, in the same way that columns in the tables of a data-model schema of an [RDBMS](https://en.wikipedia.org/wiki/Relational_database_management_system) are named. 
+* Fields are also constrained to (specific ranges and/or instances of) values, in the same way as happens in an [RDBMS](https://en.wikipedia.org/wiki/Relational_database_management_system). 
+* Fields appear as components of screen-forms of apps, where users are required to capture actual values into the fields, which are then stored as part of instances of the DOs in the database.
+![Sample_web_form](https://github.com/kwantu/platformconfiguration/blob/master/Sample_web_form.png) Notice the **Sex** key and the **Female** value on this HTML form example.
+* This example also leads us to understand that the values permissible in fields can be controlled on a form via screen widgets like **pick lists** and **radio buttons**.
+* Fields are the basic **key value pair** building block of data in a DO of the Kwantu platform. (_A key-value pair (KVP) is a set of two linked data items: a **key**, which is a unique identifier for some item of data, and the **value**, which is either the data that is identified or a pointer to the location of that data. Key-value pairs are frequently used in lookup tables, hash tables and **configuration files**._)
+
+Other documents in this wiki explore the anatomy of a Data Object from a developers perspective and from a Business Process Analyst's perspective. Specifically, the documentation referring to the [`<elements>`](https://github.com/kwantu/platformconfiguration/wiki/Data-object-elements) [tag](https://github.com/kwantu/platformconfiguration/wiki/Data-object-element-tag) and the fields within that tag, like: [`<elField>`](https://github.com/kwantu/platformconfiguration/wiki/elField) and [`<elUpload>`](https://github.com/kwantu/platformconfiguration/wiki/elUpload) etc.
