@@ -4,7 +4,8 @@
 The Kwantu team uses:
 * The proprietary [Oxygen](https://www.oxygenxml.com/xml_developer/download_oxygenxml_developer.html) XML Editor for editing XML files; and 
 * The free [Visual Studio Code](https://code.visualstudio.com/download) editor for Node.JS development and editing JSON files.
-* Chrome and Firefox browsers
+* For mobile app development we are using android-sdk with Cordova.
+* Chrome, Edge (Chromium) and Firefox browsers
 
 ### The Kwantu platform
 The Kwantu platform uses the [CouchDB](https://en.wikipedia.org/wiki/Apache_CouchDB) database to store all aspects of applications and data. To access this database the [Restlet Client](https://chrome.google.com/webstore/detail/restlet-client-rest-api-t/aejoelaoggembcahagimdiliamlcdmfm?hl=en) plugin for the Google Chrome browser is used (see [Rester](https://addons.mozilla.org/en-US/firefox/addon/rester/) for Firefox) for the following purposes:
