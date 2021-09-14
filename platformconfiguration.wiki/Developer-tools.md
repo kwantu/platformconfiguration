@@ -3,7 +3,7 @@
 ### The Kwantu team 
 The Kwantu team uses:
 * The proprietary [Oxygen](https://www.oxygenxml.com/xml_developer/download_oxygenxml_developer.html) XML Editor for editing XML files; and 
-* The free [Visual Studio Code](https://code.visualstudio.com/download) editor for editing JASON files.
+* The free [Visual Studio Code](https://code.visualstudio.com/download) editor for Node.JS development and editing JSON files.
 * Chrome and Firefox browsers
 
 ### The Kwantu platform
