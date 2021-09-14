@@ -1,4 +1,4 @@
-**The Kwantu platform is fundamentally (web and mobile) based. Development of apps on the platform requires the ability to edit XML and JASON files and access to the World-Wide-Web in the process of developing, testing and running apps.**
+**The Kwantu platform is fundamentally (web and mobile) based. Development of apps on the platform requires the ability to edit XML and JSON files and access to the World-Wide-Web in the process of developing, testing and running apps.**
 
 ### The Kwantu team 
 The Kwantu team uses:
