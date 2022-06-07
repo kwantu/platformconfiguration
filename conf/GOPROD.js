@@ -30,7 +30,8 @@ var PROD01 = {
         "password": "vB9x1TBboq2EIYvTOYwO"
     },
     "publicDomains": {
-        "default": "https://kwantu.me"
+        "default": "https://kwantu.me",
+"alternate": "https://kwantugo.com"
     },
     "mysql": {
         "url": "41.76.208.248",

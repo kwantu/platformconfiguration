@@ -30,7 +30,8 @@ var STAGE = {
         "password": "vOSOf39Fs7ZkccNLUTom"
     },
     "publicDomains": {
-        "default": "https://staging.kwantu.net"
+        "default": "https://staging.kwantu.net",
+"alternate": "https://go.kwantu.net"
     },
     "mysql": {
         "url": "localhost",
