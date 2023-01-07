@@ -17,7 +17,7 @@ https://kwantu.me/exist/rest/db/kwantu-resource/api/rest/createIndex?communityId
 
 
 ##List of indices 
-
+```
 "bucket": "kwantu_apps_<COMMUNITY_ID>"
 
 _design/search/_search/sdo
@@ -46,4 +46,4 @@ _design/search/_search/notifications
 _design/search/_search/fav
 _design/clouseau/_search/notifications
 _design/clouseau/_search/fav
-
+```
