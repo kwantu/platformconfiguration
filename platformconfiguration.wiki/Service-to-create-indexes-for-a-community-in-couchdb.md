@@ -20,12 +20,6 @@ https://kwantu.me/exist/rest/db/kwantu-resource/api/rest/createIndex?communityId
 ```
 "bucket": "kwantu_apps_<COMMUNITY_ID>"
 
-_design/search/_search/sdo
-_design/search/_search/list
-_design/search/_search/userRole
-_design/search/_search/title
-_design/search/_search/activityRoleUser
-_design/search/_search/assignee 
 _design/clouseau/_search/list
 _design/clouseau/_search/userRole
 _design/clouseau/_search/assignee
@@ -36,14 +30,11 @@ _design/clouseau/_search/sdo
                
 "bucket": "kwantu_configs"          
 
-_design/search/_search/qrcode
 _design/clouseau/_search/qrcode
 
 
 "bucket": "kwantu_user_notifications_<USER_ID>"
 
-_design/search/_search/notifications
-_design/search/_search/fav
 _design/clouseau/_search/notifications
 _design/clouseau/_search/fav
 ```
