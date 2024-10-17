@@ -1,0 +1,5 @@
+1. Activate connection pool in conf.xml
+2. Make entry in startup.xml for mariadb jar file
+3. Place mariadb jar file in lib directory
+4. Activate org.exist.collections.triggers.XQueryStartupTrigger trigger in conf.xml
+5. Create startup.xq in /db/system/autostart collection
