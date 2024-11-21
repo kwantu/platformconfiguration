@@ -1,0 +1,80 @@
+1. Activate connection pool in conf.xml
+2. Make entry in startup.xml for mariadb jar file
+3. Place mariadb jar file in lib directory
+4. Activate org.exist.collections.triggers.XQueryStartupTrigger trigger in conf.xml
+5. Create startup.xq in /db/system/autostart collection
+
+
+
+--------------------------------------
+eXist migration changes
+--------------------------------------
+##1. In below syntax, ":=" is no longer supported, hence change it to ":" only
+```
+Example below needs to be changes
+map {
+"key" := "value"
+}
+to
+map {
+"key" : "value"
+}
+```
+##2. map:new function is deprecated, hence we need to change this to map:merge.
+
+##3. We implemented hub-specific schema implementation for MySQL for which the following changes are done/needed.
+
+  ###3.1 Older schema changed to new schema name
+  ----------------------------------------
+  mobile1_8 		to 		kwantu_txn_data 
+  activities 		to 		kwantu_txn_data  
+  payments 		to 		kwantu_txn_data_sef
+  mobile1_8 		to 		kwantu_txn_data_sef
+  activities 		to 		kwantu_txn_data_sef 
+  sefsitemanager	to		kwantu_etl_data_sef 
+
+  ###3.2 Any hub-specific schema will follow same schema names followed by "_<hub-code>". eg. kwantu_txn_data_sef. 
+  But for this any change in the query is not needed, rather we have a central function for sql execution which identifies the hub code and suffix it to schema.
+  The central function to execute mysql queires is placed as server:executeQuery in mod-server.xqm which expects two paramters as sql query and clientid.
+  Client id could be communityId or special domain configured for the community or hub.
+
+
+##4. We have changed the couch-gateway.xqm location to standard db/kwantu-resource/modules collection so please fix the import statement for cojuch-gateway as 
+```
+import module namespace couch-gateway="couch-gateway" at "xmldb:exist:///db/kwantu-resource/modules/couch-gateway.xqm";
+```
+
+##5. 'httpclient' module is no longer supported. So any calls made using that module needs to be changed using htt module. Below are the exaplmes
+
+Sample call for GET/DELETE
+```
+let $url := $server:couchdb-user-server || "/" || $server:sync-user-local-bucket || "_" || $userId
+let $encoded := util:base64-encode(concat($server:couchdb-username,":",$server:couchdb-password))
+    
+let $response := 
+    http:send-request(
+        <http:request method="GET" href="{$url}">
+            <http:header name="Authorization" value="Basic {$encoded}"/>
+            <http:header name="Content-Type" value="application/json"/>
+        </http:request>
+    )
+    
+let $response-json := parse-json(util:base64-decode($response[2]))
+```
+
+Sample call for POST/PUT
+```
+let $url := $server:couchdb-user-server || "/" || $server:sync-user-local-bucket || "_" || $userId
+let $encoded := util:base64-encode(concat($server:couchdb-username, ":", $server:couchdb-password))
+
+let $response := 
+        http:send-request(
+            <http:request method="POST">
+                <http:header name="Authorization" value="Basic {$encoded}"/>
+                <http:header name="Content-Type" value="application/json"/>
+                <http:body method="text" media-type="application/json"/>
+            </http:request>, $uri, $packet)
+
+let $response-json := parse-json(util:base64-decode($response[2]))
+```
+
