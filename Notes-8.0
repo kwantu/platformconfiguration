@@ -85,3 +85,9 @@ let $response-json := parse-json(util:base64-decode($response[2]))
 
 7. We need to change the way SQL reports are being generated to handle the hub-schema. We can discuss options when you start with reports.
 
+
+
+------------------------------
+To fetch the hub code for a supplied identifier (communityId/domain), we can use below xpath
+
+let $hubConf := doc("/db/kwantu-resource/mappings.xml")//entry[nodeUUID eq $identifier or hubUUID eq $identifier or hubDomain eq $identifier or nodeDomain eq $identifier]
