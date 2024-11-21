@@ -91,3 +91,5 @@ let $response-json := parse-json(util:base64-decode($response[2]))
 To fetch the hub code for a supplied identifier (communityId/domain), we can use below xpath
 
 let $hubConf := doc("/db/kwantu-resource/mappings.xml")//entry[nodeUUID eq $identifier or hubUUID eq $identifier or hubDomain eq $identifier or nodeDomain eq $identifier]
+
+Note: This could also be blank for the communities no hub is specified in the settings. In that it should default to "default" hub
