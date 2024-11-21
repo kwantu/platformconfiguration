@@ -83,5 +83,5 @@ let $response-json := parse-json(util:base64-decode($response[2]))
 
 6. Please discuss the collection structure required for client-specific services with Willem.
 
-7. We need to change the way SQL reports are being generated to handle the hub-schema.
+7. We need to change the way SQL reports are being generated to handle the hub-schema. We can discuss options when you start with reports.
 
