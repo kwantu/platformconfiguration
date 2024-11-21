@@ -43,9 +43,9 @@ map {
 
 
 4. We have changed the couch-gateway.xqm location to standard db/kwantu-resource/modules collection so please fix the import statement for cojuch-gateway as 
-```
+
 import module namespace couch-gateway="couch-gateway" at "xmldb:exist:///db/kwantu-resource/modules/couch-gateway.xqm";
-```
+
 
 5. 'httpclient' module is no longer supported. So any calls made using that module needs to be changed using http module. Below are the exaplmes
 
@@ -80,4 +80,8 @@ let $response :=
 
 let $response-json := parse-json(util:base64-decode($response[2]))
 
+
+6. Please discuss the collection structure required for client-specific services with Willem.
+
+7. We need to change the way SQL reports are being generated to handle the hub-schema.
 
