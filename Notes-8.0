@@ -10,8 +10,19 @@
                 <parameter name="pool.2.properties.registerMbeans" value="false"/>
 
 ```
-2. Make entry in startup.xml for mariadb jar file
-3. Place mariadb jar file in lib directory
+2. Make entry in startup.xml for  jar file
+3. Place  jar file in lib directory
+```
+jasperreports-6.13.0.jar 
+jasperreports-fonts-6.13.0.jar 
+jasperreports-functions-6.13.0.jar 
+jasperreports-javaflow-6.13.0.jar 
+jasperreports-metadata-6.13.0.jar 
+javascript-1.7.2.jar
+mariadb-java-client-3.4.1.jar
+gs.jar
+```
+
 4. Activate org.exist.collections.triggers.XQueryStartupTrigger trigger in conf.xml
 5. Copy startup.xq in /db/system/autostart collection
 
