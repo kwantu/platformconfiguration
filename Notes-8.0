@@ -11,6 +11,63 @@
 
 ```
 2. Make entry in startup.xml for  jar file
+```
+	<dependency>
+        <groupId>mariadb</groupId>
+        <artifactId>mariadb-connector</artifactId>
+        <version>3.4.1</version>
+        <relativePath>mariadb-java-client-3.4.1.jar</relativePath>
+      </dependency>
+      
+      <dependency>
+        <groupId>jasper</groupId>
+        <artifactId>jasperreports-fonts</artifactId>
+        <version>6.13.0</version>
+        <relativePath>jasperreports-fonts-6.13.0.jar</relativePath>
+</dependency>
+
+<dependency>
+        <groupId>jasper</groupId>
+        <artifactId>javascript</artifactId>
+        <version>1.7.2</version>
+        <relativePath>javascript-1.7.2.jar</relativePath>
+</dependency>
+
+<dependency>
+        <groupId>jasper</groupId>
+        <artifactId>kwantu-reports</artifactId>
+        <version>1.0.0</version>
+        <relativePath>gs.jar</relativePath>
+</dependency>
+
+<dependency>
+        <groupId>jasper</groupId>
+        <artifactId>jasperreports-metadata</artifactId>
+        <version>6.13.0</version>
+        <relativePath>jasperreports-metadata-6.13.0.jar</relativePath>
+</dependency>
+
+ <dependency>
+        <groupId>jasper</groupId>
+        <artifactId>jasperreports-javaflow</artifactId>
+        <version>6.13.0</version>
+        <relativePath>jasperreports-javaflow-6.13.0.jar</relativePath>
+</dependency>
+
+ <dependency>
+        <groupId>jasper</groupId>
+        <artifactId>jasperreports-functions</artifactId>
+        <version>6.13.0</version>
+        <relativePath>jasperreports-functions-6.13.0.jar</relativePath>
+</dependency>
+
+ <dependency>
+        <groupId>jasper</groupId>
+        <artifactId>jasperreports</artifactId>
+        <version>6.13.0</version>
+        <relativePath>jasperreports-6.13.0.jar</relativePath>
+      </dependency>
+```
 3. Place  jar file in lib directory
 ```
 jasperreports-6.13.0.jar 
