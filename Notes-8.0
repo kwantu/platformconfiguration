@@ -25,6 +25,7 @@ gs.jar
 
 4. Activate org.exist.collections.triggers.XQueryStartupTrigger trigger in conf.xml
 5. Copy startup.xq in /db/system/autostart collection
+6. enable java binding
 
 
 
