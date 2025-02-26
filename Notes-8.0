@@ -5,7 +5,7 @@
 		            <parameter name="pool.2.properties.dataSource.url" value="jdbc:mariadb://154.0.175.99:3306/hub_config"/>
 
 		            <parameter name="pool.2.properties.dataSource.user" value="root"/>
-                <parameter name="pool.2.properties.dataSource.password" value="s0meP@ssword123"/>
+                <parameter name="pool.2.properties.dataSource.password" value="###########"/>
                 <parameter name="pool.2.properties.maximumPoolSize" value="10"/>
                 <parameter name="pool.2.properties.registerMbeans" value="false"/>
 
