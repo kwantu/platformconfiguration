@@ -1,4 +1,15 @@
 1. Activate connection pool in conf.xml
+```
+                <parameter name="pool.2.name" value="pool-2"/>
+                <parameter name="pool.2.properties.dataSourceClassName" value="org.mariadb.jdbc.MariaDbDataSource"/>
+		            <parameter name="pool.2.properties.dataSource.url" value="jdbc:mariadb://154.0.175.99:3306/hub_config"/>
+
+		            <parameter name="pool.2.properties.dataSource.user" value="root"/>
+                <parameter name="pool.2.properties.dataSource.password" value="s0meP@ssword123"/>
+                <parameter name="pool.2.properties.maximumPoolSize" value="10"/>
+                <parameter name="pool.2.properties.registerMbeans" value="false"/>
+
+```
 2. Make entry in startup.xml for mariadb jar file
 3. Place mariadb jar file in lib directory
 4. Activate org.exist.collections.triggers.XQueryStartupTrigger trigger in conf.xml
