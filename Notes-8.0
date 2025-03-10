@@ -78,7 +78,17 @@ jasperreports-metadata-6.13.0.jar
 javascript-1.7.2.jar
 mariadb-java-client-3.4.1.jar
 gs.jar
+and many more jars.....
+
+
+   sudo dnf install https://li.nux.ro/download/nux/dextop/el8/x86_64/nux-dextop-release-0-1.el8.nux.noarch.rpm
+   wget https://sourceforge.net/projects/mscorefonts2/files/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
+   sudo dnf install ./msttcore-fonts-installer-2.6-1.noarch.rpm
+   sudo fc-cache -fv
+   fc-list | grep -i arial
+
 ```
+
 
 4. Activate org.exist.collections.triggers.XQueryStartupTrigger trigger in conf.xml
 5. Copy startup.xq in /db/system/autostart collection
