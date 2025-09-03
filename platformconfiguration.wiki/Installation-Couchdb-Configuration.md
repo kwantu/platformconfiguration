@@ -254,6 +254,45 @@ curl -X PUT http://127.0.0.1:5984/_users
 curl -X PUT http://127.0.0.1:5984/_replicator
 curl -X PUT http://127.0.0.1:5984/_global_changes
 ```
+# Updating config to support Gzip compression
+## In <couchdb>/etc/local.ini
+
+Add/Update below mentioned settings in the suggested sections
+
+```
+[chttpd]
+compression_level = 6
+compress_response = true
+compressible_types = text/*, application/javascript, application/json, application/xml
+compression_min_size = 128
+
+[httpd]
+compression_level = 6
+compress_response = true
+compressible_types = text/*, application/javascript, application/json, application/xml
+compression_min_size = 128
+
+[cors]
+headers = accept, authorization, content-type, origin, referer, accept-encoding, vary
+methods = GET, PUT, POST, HEAD, DELETE, OPTIONS
+```
+
+In all nginx files which listne over 443 for any domain, insude 'server' json block add
+```
+	# Enable compression
+gzip on;
+gzip_vary on;
+gzip_comp_level 6;
+gzip_min_length 1000;
+gzip_proxied any;
+gzip_types
+    application/json
+    application/javascript
+    text/css
+    text/javascript
+    text/plain
+    text/xml;
+```
 
 # Troubleshooting
 emfile in the log means you've run out of file descriptors.
