@@ -273,7 +273,7 @@ compressible_types = text/*, application/javascript, application/json, applicati
 compression_min_size = 128
 
 [cors]
-headers = accept, authorization, content-type, origin, referer, accept-encoding, vary
+headers = accept, authorization, content-type, origin, referer, accept-encoding, vary, Content-Encoding
 ```
 
 In all nginx files which listne over 443 for any domain, insude 'server' json block add
