@@ -274,6 +274,7 @@ compression_min_size = 128
 
 [cors]
 headers = accept, authorization, content-type, origin, referer, accept-encoding, vary, Content-Encoding
+methods = GET, PUT, POST, HEAD, DELETE, OPTIONS
 ```
 
 In all nginx files which listne over 443 for any domain, insude 'server' json block add
